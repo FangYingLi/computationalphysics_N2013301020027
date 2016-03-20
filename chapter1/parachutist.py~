@@ -1,5 +1,5 @@
 #this is a program describes the velocity of the parachutist
-#written by FangYingLi,this is my first program(^ ^)
+#written by FangYingLi^^
 from pylab import*
 v=[]
 t=[]

@@ -1,5 +1,3 @@
-#this is a program describes radioactive decay
-
 from pylab import*
 
 N=[]
