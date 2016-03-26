@@ -1,4 +1,4 @@
-#this is a program describes radioactive decay
+#this is a program to describe the radioactive decay of uranium, which have the simplest form
 
 from pylab import*
 
