@@ -4,13 +4,13 @@ But I find programming is really an interesting thing, especially on python. Lea
 
 ##**Assignment List**
 ###chapter 1
-[a basic decay program]()<p>
-[problem 1.3]() <p>
-[problem 1.5](https://www.zybuluo.com/FangYing/note/325374)
+>*[a basic decay program, it's a practice](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/chapter1/nuclei2.py)
+>*[problem 1.3](https://www.zybuluo.com/FangYing/note/326104) 
+>*[problem 1.5](https://www.zybuluo.com/FangYing/note/325374)
 
 ##Little game<p>
 this is a little game,really little^_^ you can run it in your command window
 [guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
 
-###Have light in heart everyday--Best wishes
+###Have light in heart everyday--Best wishes!
 ![](http://a1.qpic.cn/psb?/V13WTB3335ifOd/Xoie5xvk8l1tfzPTjU.7dAEcUFjuH7FohZ.BB9HDSCs!/b/dH0BAAAAAAAA&bo=XgIGAgAAAAAFB3w!&rf=viewer_4)
