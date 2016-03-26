@@ -1,6 +1,7 @@
 ##**Welcome! My name is Li Fangying.**<p>
-This is my first time to use linux symtem and I have no experience of programming before.
-But I find programming is really an interesting thing, especially on python. Learning it sometimes troubles me or confuses me, but it's still a joyful process. I'm fascinated by it!
+This is my first time to use linux symtem and I have no experience of programming before.<p>
+But I find programming is really an interesting thing, especially on python. Learning it sometimes troubles me or confuses me, but it's still a joyful process. <p>
+I'm fascinated by it!<p>
 
 ##**Assignment List**
 ###chapter 1
