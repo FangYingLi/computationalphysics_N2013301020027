@@ -1,5 +1,17 @@
-**hello my name is li fangying.**<p>
-this is my first time to use linux symtem and i know nothing about git.<p>
-it takes me some time to find out what git is,it's really an interesting thing. Besides, if professor can introduce more related messages about computional terms, like this, i will be grateful.<p>
-And i find i sometimes cannot use commands correctly,for example, i feel confuse about when i should insert space, that makes me a little anxious. but,in all is a joyful process(^ ^)
-![image] (http://pica.nipic.com/2008-01-17/2008117162930782_2.jpg)
+##**Welcome! My name is Li Fangying.**<p>
+This is my first time to use linux symtem and I have no experience of programming before.<p>
+But I find programming is really an interesting thing, especially on python. Learning it sometimes troubles me or confuses me, but it's still a joyful process. <p>
+I'm fascinated by it!<p>
+
+##**Assignment List**
+###chapter 1
+>*[a basic decay program, it's a practice](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/chapter1/nuclei2.py)<p>
+>*[problem 1.3](https://www.zybuluo.com/FangYing/note/326104) <p>
+>*[problem 1.5] (https://www.zybuluo.com/FangYing/note/325374)<p>
+
+##Little game<p>
+this is a little game,really little^_^ you can run it in your command window
+[guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
+
+###Have light in heart everyday--Best wishes!
+![](http://a1.qpic.cn/psb?/V13WTB3335ifOd/Xoie5xvk8l1tfzPTjU.7dAEcUFjuH7FohZ.BB9HDSCs!/b/dH0BAAAAAAAA&bo=XgIGAgAAAAAFB3w!&rf=viewer_4)
