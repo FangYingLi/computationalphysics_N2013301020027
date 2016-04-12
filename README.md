@@ -8,7 +8,7 @@ I'm fascinated by it!<p>
 >*[a basic decay program, it's a practice](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/chapter1/nuclei2.py)<p>
 >*[problem 1.3](https://www.zybuluo.com/FangYing/note/326104) <p>
 >*[problem 1.5] (https://www.zybuluo.com/FangYing/note/325374)<p>
-
+>*[problem 2.9] (https://www.zybuluo.com/FangYing/note/325343)<p>
 ##Little game<p>
 this is a little game,really little^_^ you can run it in your command window
 [guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
