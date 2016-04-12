@@ -1,6 +1,6 @@
 #This is my first time learn "class",so I take professor's code, make some notes and change a little,I'm not sure these notes are correct or not, so welcome to leave some comments!
 from pylab import *
-
+from math import *
 g = 9.8
 b2m = 1e-5
 #init is a special method that get invoked when an object is instantiated.when you define an object in this class,it will be assigned these attributes
@@ -44,9 +44,9 @@ class cannon:
         x = []
         y = []
         for fs in self.cannon_flight_state:#we can rewrite "fs" as "t",it do not affect the result,because "fs" refers to a group of the five values (x,y,vx,vy,t)
-            x.append(fs.x)
+            x.::append(fs.x)
             y.append(fs.y)
-        plot(x,y,label=str(self.cannon_flight_state[1].vy/self.cannon_fligh_state[1].vx))
+        plot(x,y,label=str(self.cannon_flight_state[1].vy/self.cannon_flight_state[1].vx))
         legend(loc='upper right')
         xlabel('x/m')
         ylabel('y/m')
@@ -67,10 +67,16 @@ class drag_cannon(cannon):#drag_cannon inherit cannon
 
 #to calculate b2m with the isothermal approximation        
 
-class isothernal_drag_cannon(drag_cannon):
+class iso_drag_cannon(cannon):
     def next_state(self,current_state):
-    b2m=b2m*exp(-current_state.y/1e+4)
-    return flight_state(next_x,next_y,next_vx,next_vy,current_state.t+se    lf.dt)  
+        global b2m
+        b2m2=b2m*exp(-current_state.y/1e+4)
+        v=sqrt(current_state.vx*current_state.vx+current_state.vy*current_state.vy)
+        next_vx=current_state.vx-b2m2*v*current_state.vx*self.dt
+        next_x =current_state.x+ next_vx*self.dt
+        next_vy=current_state.vy-b2m2*v*current_state.vy*self.dt
+        next_y=current_state.y+ next_vy*self.dt
+        return flight_state(next_x,next_y,next_vx,next_vy,current_state.t+self.dt)  
 
 
 #with adiabatic approximation
@@ -78,21 +84,20 @@ class isothernal_drag_cannon(drag_cannon):
 class adiabatic_drag_cannon(cannon):
     def next_state(self, current_state):
         global g
-        b2m2=(1-6.5e-3*current_state.y/300)^2.5#T=300k
         v=sqrt(current_state.vx * current_state.vx+current_state.vy * current_state.vy)
-        next_vx = current_state.vx- b2m2 * v * current_state_vx * self.dt
+        next_vx = current_state.vx-(1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vx * self.dt
         next_x = current_state.x+ next_vx*self.dt
-        next_vy = current_state.vy - g*self.dt - b2m2 * v * current_state.vy *self.dt
+        next_vy = current_state.vy - g*self.dt - (1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vy *self.dt
         next_y = current_state.y + next_vy* self .dt
         return flight_state(next_x, next_y, next_vx, next_vy, current_state.t +self.dt)   
 
         pass#pass is a null operation, just to make the program complete
 #once classes are defined, usage will be conveninent
-a1 = cannon(flight_state(0,0,700,490.14,0),_dt=0.1)#vy/vx=tan35
-a2 = cannon(flight_state(0,0,700,587.37,0),_dt=0.1)#vy/vx=tan40
-a3 = cannon(flight_state(0,0,700,700,0),_dt=0.1)#vy/vx=tan45
-a4 = cannon(flight_state(0,0,700,834.22,0),_dt=0.1)#vy/vx=tan50
-a5 = cannon(flight_state(0,0,700,999.70,0),_dt=0.1)#vy/vx=tan50
+a1 = iso_drag_cannon(flight_state(0,0,573.4,401.2,0),_dt=0.1)#vy/vx=tan35
+a2 = iso_drag_cannon(flight_state(0,0,536.2,449.9,0),_dt=0.1)#vy/vx=tan40
+a3 = iso_drag_cannon(flight_state(0,0,494.9,494.9,0),_dt=0.1)#vy/vx=tan45
+a4 = iso_drag_cannon(flight_state(0,0,449.9,536.2,0),_dt=0.1)#vy/vx=tan50
+a5 = iso_drag_cannon(flight_state(0,0,401.5,573.4,0),_dt=0.1)#vy/vx=tan50
 a1.shoot()#the landing point
 a2.shoot()
 a3.shoot()
