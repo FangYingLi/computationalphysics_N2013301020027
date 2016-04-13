@@ -82,23 +82,23 @@ class iso_drag_cannon(cannon):
 
 #with adiabatic approximation
 
-class adiabatic_drag_cannon(cannon):
+class adia_drag_cannon(cannon):
     def next_state(self, current_state):
-        global g
+        global g,b2m
         v=sqrt(current_state.vx * current_state.vx+current_state.vy * current_state.vy)
-        next_vx = current_state.vx-(1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vx * self.dt
+        next_vx = current_state.vx-b2m*(1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vx * self.dt
         next_x = current_state.x+ next_vx*self.dt
-        next_vy = current_state.vy - g*self.dt - (1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vy *self.dt
+        next_vy = current_state.vy - g*self.dt -b2m* (1-6.5e-3*current_state.y/300)**2.5 * v * current_state.vy *self.dt
         next_y = current_state.y + next_vy* self .dt
         return flight_state(next_x, next_y, next_vx, next_vy, current_state.t +self.dt)   
 
         pass#pass is a null operation, just to make the program complete
 #once classes are defined, usage will be conveninent
-a1 = cannon(flight_state(0,0,573.4,401.2,0),_dt=0.1)#vy/vx=tan35
-a2 = cannon(flight_state(0,0,536.2,449.9,0),_dt=0.1)#vy/vx=tan40
-a3 = cannon(flight_state(0,0,494.9,494.9,0),_dt=0.1)#vy/vx=tan45
-a4 = cannon(flight_state(0,0,449.9,536.2,0),_dt=0.1)#vy/vx=tan50
-a5 = cannon(flight_state(0,0,401.5,573.4,0),_dt=0.1)#vy/vx=tan50
+a1 = adia_drag_cannon(flight_state(0,0,573.4,401.2,0),_dt=0.1)#vy/vx=tan35
+a2 = adia_drag_cannon(flight_state(0,0,536.2,449.9,0),_dt=0.1)#vy/vx=tan40
+a3 = adia_drag_cannon(flight_state(0,0,494.9,494.9,0),_dt=0.1)#vy/vx=tan45
+a4 = adia_drag_cannon(flight_state(0,0,449.9,536.2,0),_dt=0.1)#vy/vx=tan50
+a5 = cannon(flight_state(0,0,401.5,573.4,0),_dt=0.1)#vy/vx=tan55
 a1.shoot()#the landing point
 a2.shoot()
 a3.shoot()
