@@ -9,7 +9,7 @@
 # And generally, the ODE defined on system state takes the form:
 #
 #       def Your_ODE(system_state = [x0, x1, x2, x3, ...]):
-#           return time_differential_of_state = [dx0, dx1, dx2, dx3]/dt
+#           return time_differential_of_state = [dx0/dt, dx1/dt, dx2/dt,...]
 #
 # Now I shall write the program with these convensions.
 
@@ -18,12 +18,15 @@ from pylab import plot, show, legend, xlabel, ylabel, cla, clf
 import numpy as np
 
 def Euler_algorithm(input_state, dt, ODE_set):
+    ''' return [dx0, dx1, dx2, ...]
+    Euler algorithm for single time step iteration:
+    '''
     derivative = ODE_set(input_state)
     return [i*dt for i in derivative]
 
 class simulator:
     '''
-    basic simulator class, all concrete model should be derived from it
+    basic simulator class, all concrete model should be derived from this one
     '''
     def __init__(self, init_state, start_time, dt=0.1, iterator
                  = Euler_algorithm):
@@ -34,15 +37,17 @@ class simulator:
         self.state_container = [[start_time] + init_state]  # element format [time, x0,x1,...]
 
     def stop_condition(self):
-        '''
-        Placeholder function: override it in concrete example
-        indicate the condition to stop
+        ''' return boolean
+        Placeholder function: override it in concrete model
+        indicate the condition to stop:
+            True: iteration of self.integrate() will be stoped
+            False: iteration of self.integrate() will continue
         '''
         return True
 
     def system_ODE(self, input_state):
-        '''
-        Placeholder ODE, oveer
+        ''' return [dx0/dt, dx1/dt, ...]
+        Placeholder ODE
         '''
         return input_state
 
@@ -93,6 +98,9 @@ class cannon(simulator):
             ]
 
     def show_trajectory(self):
+        '''
+        Plot trajectory
+        '''
         container = np.array(self.state_container).transpose()
         plot(container[1], container[2],label =
                 str(container[4][0]/container[3][0]))  # plot x,y, label vy/vx of init
@@ -103,7 +111,7 @@ class cannon(simulator):
 
 class drag_cannon(cannon):
     '''
-    constant drag coefficient
+    cannon trajectory with constant drag coefficient
     '''
     def __init__(self, init_state = (0.,0.,0.,0.), start_time=0, dt=0.1, iterator
                  = Euler_algorithm):
@@ -111,6 +119,14 @@ class drag_cannon(cannon):
         self.drag_coef = 1.e-5
 
     def system_ODE(self, input_state):
+        '''
+        return [dx/dt, dy/dt, dvx/dt, dvy/dt]
+        Note that:
+            dx/dt = vx
+            dy/dt = vy
+            dvx/dt = -F_drag_x
+            dvy/dt = -F_drag_y - g
+        '''
         speed = (input_state[2]**2+input_state[3]**2)**0.5
         return [
             input_state[2],
@@ -133,6 +149,14 @@ class iso_drag_cannon(cannon):
         self.gas_const = 8.314  # SI unit
 
     def system_ODE(self, input_state):
+        '''
+        return [dx/dt, dy/dt, dvx/dt, dvy/dt]
+        Note that:
+            dx/dt = vx
+            dy/dt = vy
+            dvx/dt = -F_drag_x * height_effect
+            dvy/dt = -F_drag_y(y) * height_effect - g
+        '''
         height_effect = exp(-self.gravity * self.air_molar_mass /
                             self.gas_const / self.temp * input_state[1])
         speed = (input_state[2]**2+input_state[3]**2)**0.5
@@ -143,6 +167,7 @@ class iso_drag_cannon(cannon):
             -self.drag_coef*height_effect*speed*input_state[3]-self.gravity
             ]
 
+# TESTING
 #a1 = cannon([0.,0.,400., 400.])
 #a1.integrate()
 #a1.show_trajectory()
