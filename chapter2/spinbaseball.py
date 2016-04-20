@@ -61,10 +61,15 @@ class baseball:
     def height(self):
         return max(self.Y)
     # represent trajectory 
-    def plot(self, color):
+    def plot_2d(self, color):
         plt.plot(self.X,self.Y,color,label="$%dm/s$,$%d\degree$, with backspin"%(self.v0,self.Theta))
+        legend(loc='best')
         return 0
-
+'''    def trace(self):
+        global x,y
+        x=[]
+        y=[]
+        for t in self.'''
 class baseball1(baseball):
     "the second simplest model with no air drag under constant air density, no probability distribution"    
     # external force other than gravity        
@@ -78,7 +83,32 @@ class baseball1(baseball):
         return 0
         
 # select the angle casting the largest distance
-A=baseball(100,45)
+import numpy as np
+
+theta=np.linspace(15,75,12)
+f=[]
+for i in range (len(theta)):
+    k=baseball(41.6,theta[i],0)
+    k.fly()
+    plt.plot(k.X,k.Y,label=r'$\theta=%.2f^\circ$'%theta[i])
+    plt.xlabel('the initial angle/deg')
+    plt.ylabel('the maximum range/m')
+    plt.title('the maximum ranges at different initial angles')
+    plt.legend(loc='best',frameon=False)
+    f.append(k.X[-1])
+    
+plt.show()
+
+phi=np.linspace(13.5,73.5,12)
+width=3
+plt.bar(phi,f,width,color='r')
+plt.xlabel(r'$\theta^\circ$')
+plt.ylabel('the maximum range')
+plt.title('the maximum ranges at different initial angles')
+plt.show()
+
+
+'''A=baseball(100,45)
 A.fly()
 A.plot('g')
 
@@ -92,3 +122,4 @@ print A.distance()
 print A.height()
 print B.distance()
 print B.height()
+'''
