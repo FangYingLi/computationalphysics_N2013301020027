@@ -15,11 +15,12 @@ class cp:
         self.w.append(_w)
         self.dt=_dt
     def cal(self,fd):
-        global g,l,D,q
-        while(self.t[-1]<100):
+        global g,l,D,q,f1
+        while(self.t[-1]<2000):
             self.w.append(self.w[-1]-g/l*sin(self.theta[-1])*self.dt-q*self.w[-1]*self.dt+fd*sin(D*self.t[-1])*self.dt)
             self.theta.append(self.theta[-1]+self.w[-1]*self.dt)
             self.t.append(self.t[-1]+self.dt)
+        
         return
     def plot_2d(self,fd):
         #print len(self.t) ,len(self.theta)
@@ -37,7 +38,7 @@ class cp:
 
   
     def cal2(self,fd):#limit theta in [-pi,pi]
-        global g,l,D,q,x,y
+        global g,l,D,q,x,y,f1
         while(self.t[-1]<800):
             self.w.append(self.w[-1]-g/l*sin(self.theta[-1])*self.dt-q*self.w[-1]*self.dt+fd*sin(D*self.t[-1])*self.dt)
             if self.theta[-1]>pi:
@@ -49,6 +50,7 @@ class cp:
             self.t.append(self.t[-1]+self.dt)
         x=self.theta
         y=self.w
+        f1=fd
 #plot t versus theta at different fd 
 '''
 lin=[0,0.5,1.2]#fd=lin
@@ -105,15 +107,62 @@ f.cal2(1.2)
 x1=[]
 y1=[]
 for i in range(len(x)):
+    if i%4000==1000: #equal to, not assignment
+        x1.append(x[i])# pick up points and store them in empty list
+        y1.append(y[i])
+figure(figsize=(12,8))
+subplot(2,2,1)
+scatter(x1,y1,s=1.5,label=r'$fd=%g$'%f1)
+legend(loc='best',frameon=False)
+xlabel(r'$\theta(radians)$')
+ylabel('w(radians/s)')
+
+
+f=cp()
+f.cal2(1.2)
+x1=[]
+y1=[]
+for i in range(len(x)):
+    if i%4000==2000: #equal to, not assignment
+        x1.append(x[i])# pick up points and store them in empty list
+        y1.append(y[i])
+subplot(2,2,2)
+scatter(x1,y1,s=1.5,label=r'$fd=%g$'%f1)
+legend(loc='best',frameon=False)
+xlabel(r'$\theta(radians)$')
+ylabel('w(radians/s)')
+
+
+f=cp()
+f.cal2(1.2)
+x1=[]
+y1=[]
+for i in range(len(x)):
+    if i%4000==3000: #equal to, not assignment
+        x1.append(x[i])# pick up points and store them in empty list
+        y1.append(y[i])
+subplot(2,2,3)
+scatter(x1,y1,s=1.5,label=r'$fd=%g$'%f1)
+legend(loc='best',frameon=False)
+xlabel(r'$\theta(radians)$')
+ylabel('w(radians/s)')
+
+f=cp()
+f.cal2(1.2)
+x1=[]
+y1=[]
+for i in range(len(x)):
     if i%4000==0: #equal to, not assignment
         x1.append(x[i])# pick up points and store them in empty list
         y1.append(y[i])
-figure(figsize=(6,4))
-scatter(x1,y1,label=r'$fd=1.2$')
+subplot(2,2,4)
+scatter(x1,y1,label=r'$fd=%g$'%f1,s=1.5)
 legend(loc='best',frameon=False)
-xlabel(r'$\theta(radians)')
+xlabel(r'$\theta(radians)$')
 ylabel('w(radians/s)')
+
 show()
+
         
 
 
