@@ -13,6 +13,8 @@ I'm fascinated by it!<p>
 >*[problem 2.19](https://www.zybuluo.com/FangYing/note/340216)<p>
 ###chapter3
 >*[problem 3.8](https://www.zybuluo.com/FangYing/note/347816)<p>
+>*[problem 3.12](https://www.zybuluo.com/FangYing/note/356235)<p>
+
 ##Little game<p>
 this is a little game,really little^_^ you can run it in your command window
 [guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
