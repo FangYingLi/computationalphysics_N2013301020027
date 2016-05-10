@@ -1,20 +1,24 @@
 from visual import *
+import os
+
 #my first vpython program!
 scene.title='binary star'
 scene.forward=vector(0,-0.3,-1)
 
 G=6.7e-11
 
-b=sphere(pos=(-1e11,0,0),color=color.red,radius=4e10)
-b.make_trail=True
+b=sphere(pos=(-1e11,0,0),color=color.red,radius=4e10, make_trail=True)
 b.p=vector(0,0,-1e4)*2e30#p=mv
 b.mass=2e30
 
-s=sphere(pos=(1.5e11,0,0),color=color.blue,radius=2e10,make_trail=True)
+s=sphere(pos=(1.5e11,0,0),color=color.blue,radius=2e10, make_trail=True)
 s.p=-b.p
 s.mass=1e30
 
 dt=1e5
+
+counter=0
+sshot_iter=0
 while True:
     rate(200)
     dist=s.pos-b.pos
@@ -24,4 +28,7 @@ while True:
     b.pos=b.pos+b.p/b.mass*dt#pos=pos+v*dt
     s.pos=s.pos+s.p/s.mass*dt
 
-
+    if counter%10==0:
+        os.popen('import -window "binary star" frames/vp'+str(sshot_iter).zfill(4)+'.gif')
+        sshot_iter+=1
+    counter+=1
