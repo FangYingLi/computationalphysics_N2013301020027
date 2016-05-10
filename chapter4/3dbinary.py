@@ -5,12 +5,11 @@ scene.forward=vector(0,-0.3,-1)
 
 G=6.7e-11
 
-b=sphere(pos=(-1e11,0,0),color=color.red,radius=4e10)
-b.make_trail=True
+b=sphere(pos=(-1e11,0,0),color=color.red,radius=4e10, make_trail=True)
 b.p=vector(0,0,-1e4)*2e30#p=mv
 b.mass=2e30
 
-s=sphere(pos=(1.5e11,0,0),color=color.blue,radius=2e10,make_trail=True)
+s=sphere(pos=(1.5e11,0,0),color=color.blue,radius=2e10, make_trail=True)
 s.p=-b.p
 s.mass=1e30
 
