@@ -16,7 +16,7 @@ I'm fascinated by it!<p>
 >*[problem 3.12](https://www.zybuluo.com/FangYing/note/356235)<p>
 >*[problem 3.26](https://www.zybuluo.com/FangYing/note/369299)<p>
 ###chapter4
->*[problem 4.7 editing...](https://www.zybuluo.com/FangYing/note/369432)<p>
+>*[problem 4.7](https://www.zybuluo.com/FangYing/note/369432)<p>
 
 ##Little game<p>
 this is a little game,really little^_^ you can run it in your command window
