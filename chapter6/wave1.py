@@ -14,8 +14,8 @@ y0_2=np.exp(-1000*(l-0.3)**2)+np.exp(-700*(l-0.7)**2)
 
 def w():
     global t,dt
-    y.append(y0)
-    y.append(y0)
+    y.append(y0_2)
+    y.append(y0_2)
     while t<100.0:
         y_next=np.zeros(100)
        
