@@ -14,8 +14,8 @@ y0_2=np.exp(-1000*(l-0.3)**2)+np.exp(-700*(l-0.7)**2)
 
 def w():
     global t,dt
-    y.append(y0_2)
-    y.append(y0_2)
+    y.append(y0)
+    y.append(y0)
     while t<100.0:
         y_next=np.zeros(100)
        
@@ -38,14 +38,14 @@ def w2():
             if i<50:
                 y_next[i]=-y[-2][i]+y[-1][i+1]+y[-1][i-1]
             else: 
-                y_next[i]=2*(1-0.05)*y[-1][i]-y[-2][i]+0.05*(y[-1][i+1]+y[-1][i-1])
+                y_next[i]=2*(1-0.5)*y[-1][i]-y[-2][i]+0.5*(y[-1][i+1]+y[-1][i-1])
         y.append(y_next)
         t=t+dt
     return y, t
 #print w()[0] ,w()[1]
 
-a=w2()[0]
-a=w2()[0]
+a=w()[0]
+a=w()[0]
 f=figure()
 ax=axes(xlim=(0,1),ylim=(-1.2,1.2))
 line, =ax.plot([],[],lw=2)
@@ -56,6 +56,6 @@ def animate(i):
 def init():
     line.set_data([],[])
     return line,
-anim=animation.FuncAnimation(f,animate,init_func=init,frames=100,interval=50,blit=True)#frames mean zhenshu,interval mean each frame last how long
+anim=animation.FuncAnimation(f,animate,init_func=init,frames=200,interval=50,blit=True)#frames mean zhenshu,interval mean each frame last how long
 show()
 
