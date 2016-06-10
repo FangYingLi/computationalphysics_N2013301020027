@@ -10,7 +10,7 @@ t=0.0
 y=[]
 l=np.linspace(0,1,100)#x-axis
 y0=np.exp(-1000*(l-0.3)**2)#y-axis it's a wave package locates at x=0.3
-y0_2=np.exp(-1000*(l-0.3)**2)+np.exp(-700*(l-0.7)**2)    
+y0_2=np.exp(-1000*(l-0.7)**2)+np.exp(-700*(l-0.7)**2)    
 
 def w():
     global t,dt
