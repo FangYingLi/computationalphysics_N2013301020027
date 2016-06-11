@@ -57,7 +57,7 @@ def fix_boundary_rule(array_curr, t_interval):
     array_prev = array_curr[-2]
     return [0.] + [-up + right + left
                   for up, right, left in 
-                  zip(array_prev, array_now[2:], array_now[0:-2])
+                  zip(array_prev[1:-1], array_now[2:], array_now[0:-2])
                   ] + [0.]
 
 # initialize array
@@ -66,42 +66,41 @@ init_array[0] = init_array[-1] = 0.
 
 a=iterator(stop_time=0.5, t_interval=dt, init_cond=init_array,
            update_rule=update_rule)
-print (a[-1])
-#a01=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
-#             update_rule=fix_boundary_rule)
-##print cmp(a,a01)
-#'''
-#for iter in a01:
-#   print type(a01)
-#   '''
-#b=[a_iter[5] for a_iter in a]
-#b01=[a01_iter[5] for a01_iter in a01]
-#e=len(b)
-#e01=len(b01)
-#d=linspace(0,0.01/300*e,e)
-#d01=linspace(0,0.01/300*e01,e01)
-##print d
-#'''
-#plot(d,b)
-#xlim(0,0.05)
-#xlabel('Time(s)')
-#ylabel('Signal(arbitary units)')
-#title('String signal versus time')
-#show()
-#'''
-#y2=np.fft.fft(b)
-#f=np.fft.fftfreq(len(b),0.01/300)
-#y2=abs(y2)**2
-#plot(f,y2)
-#xlabel('Frequency(Hz)')
-#ylabel('Power(arbitrary units)')
-#title('Power spectrum')
-#show()
-#
-#y21=np.fft.fft(b01)
-#f01=np.fft.fftfreq(len(b01),0.01/300)
-#y21=abs(y21)**2
-#plot(f01,y21,':',color='r')
-#xlim(0,3000)
-#
-#
+a01=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
+             update_rule=fix_boundary_rule)
+#print cmp(a,a01)
+'''
+for iter in a01:
+   print type(a01)
+   '''
+b=[a_iter[5] for a_iter in a]
+b01=[a01_iter[5] for a01_iter in a01]
+e=len(b)
+e01=len(b01)
+d=linspace(0,0.01/300*e,e)
+d01=linspace(0,0.01/300*e01,e01)
+#print d
+'''
+plot(d,b)
+xlim(0,0.05)
+xlabel('Time(s)')
+ylabel('Signal(arbitary units)')
+title('String signal versus time')
+show()
+'''
+y2=np.fft.fft(b)
+f=np.fft.fftfreq(len(b),0.01/300)
+y2=abs(y2)**2
+plot(f,y2)
+xlabel('Frequency(Hz)')
+ylabel('Power(arbitrary units)')
+title('Power spectrum')
+show()
+
+y21=np.fft.fft(b01)
+f01=np.fft.fftfreq(len(b01),0.01/300)
+y21=abs(y21)**2
+plot(f01,y21,':',color='r')
+xlim(0,3000)
+
+
