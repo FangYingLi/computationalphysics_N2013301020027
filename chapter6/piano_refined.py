@@ -8,6 +8,14 @@ from matplotlib import animation
 from pylab import*
 import numpy as np
 
+epsilon = 1e-5
+c_const=300.0
+dx=0.01
+dt = dx/c_const
+length = 1.0
+string = np.linspace(0.,length,1+int(length/dx))
+
+
 def iterator(stop_time, t_interval, init_cond, update_rule):
     """ iterate the string with update_rule
         : stop_time          simulation time
@@ -23,41 +31,41 @@ def iterator(stop_time, t_interval, init_cond, update_rule):
     del result[0] # remove the redundant initial condition
     return result
 
-def periodic_rule(array_curr, t_interval):
+def update_rule(array_curr, t_interval):
     """ periodic boundary condition
     """
+    # constants used in calculation
+    r = c_const * t_interval/dx
+    M = length/dx
+    # prepare array for iteration
     array_now = \
-        list(array_curr[-1][-2:])+list(array_curr[-1])+list(array_curr[-1][:2])
+        [array_curr[-1][1]]+list(array_curr[-1])+[array_curr[-1][-2]]
+    # padding the current array
     array_prev = array_curr[-2]
-    array_size = len(array_prev)
-    return np.array([
-        (-6*1e-5*array_size**2)*center - up +
-        (1+4*1e-5*array_size**2)*(right_1+left_1) -
-        1e-5*102**2*(right_2+left_2)
+    borderless = [
+        (2.-2.*r**2.-6.*epsilon*r**2.*M**2.)*center - up +
+        r**2.*(1.+4.*epsilon*M**2.)*(right_1+left_1) -
+        epsilon*r**2.*M**2.*(right_2+left_2)
         for center, left_1, left_2, right_1, right_2, up in
-        zip(array_now[2:-2], array_now[1:-3], array_now[0:-4], array_now[3:-1], 
-            array_now[4:], array_prev)])
+        zip(array_now[2:-2], array_now[1:-3], array_now[0:-4], array_now[3:-1],
+            array_now[4:], array_prev)]
+    return [0.] + borderless + [0.]     # padding the boundary condtion.
 
 def fix_boundary_rule(array_curr, t_interval):
     """ fixed boundary condition """
     array_now = array_curr[-1]
     array_prev = array_curr[-2]
-    return [0] + [-up + right + left
-                      for up, right, left in 
-                      zip(array_prev, array_now[2:], array_now[0:-2])
-                     ] + [0]
+    return [0.] + [-up + right + left
+                  for up, right, left in 
+                  zip(array_prev, array_now[2:], array_now[0:-2])
+                 ] + [0.]
 
-c=300.0
-dx=0.01
-dt=dx/c
-l=np.linspace(0.,1.,102)
-
-
-init_array = np.exp(-1000*(l-0.55)**2)
-
+# initialize array
+init_array = np.exp(-1000.*(string-0.55)**2)
+init_array[0] = init_array[-1] = 0.
 
 a=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
-           update_rule=periodic_rule)
+           update_rule=update_rule)
 a01=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
              update_rule=fix_boundary_rule)
 #print cmp(a,a01)
