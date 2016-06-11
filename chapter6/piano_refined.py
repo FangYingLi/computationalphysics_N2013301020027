@@ -8,7 +8,7 @@ from matplotlib import animation
 from pylab import*
 import numpy as np
 
-epsilon = 1e-5
+epsilon = 0.
 c_const=300.0
 dx=0.01
 dt = dx/c_const
@@ -39,7 +39,7 @@ def update_rule(array_curr, t_interval):
     M = length/dx
     # prepare array for iteration
     array_now = \
-        [array_curr[-1][1]]+list(array_curr[-1])+[array_curr[-1][-2]]
+        [-array_curr[-1][1]]+list(array_curr[-1])+[-array_curr[-1][-2]]
     # padding the current array
     array_prev = array_curr[-2]
     borderless = [
@@ -48,7 +48,7 @@ def update_rule(array_curr, t_interval):
         epsilon*r**2.*M**2.*(right_2+left_2)
         for center, left_1, left_2, right_1, right_2, up in
         zip(array_now[2:-2], array_now[1:-3], array_now[0:-4], array_now[3:-1],
-            array_now[4:], array_prev)]
+            array_now[4:], array_prev[1:-1])]
     return [0.] + borderless + [0.]     # padding the boundary condtion.
 
 def fix_boundary_rule(array_curr, t_interval):
@@ -58,49 +58,50 @@ def fix_boundary_rule(array_curr, t_interval):
     return [0.] + [-up + right + left
                   for up, right, left in 
                   zip(array_prev, array_now[2:], array_now[0:-2])
-                 ] + [0.]
+                  ] + [0.]
 
 # initialize array
-init_array = np.exp(-1000.*(string-0.55)**2)
+init_array = 0.001*np.exp(-1000.*(string-0.55)**2)
 init_array[0] = init_array[-1] = 0.
 
-a=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
+a=iterator(stop_time=0.5, t_interval=dt, init_cond=init_array,
            update_rule=update_rule)
-a01=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
-             update_rule=fix_boundary_rule)
-#print cmp(a,a01)
-'''
-for iter in a01:
-   print type(a01)
-   '''
-b=[a_iter[5] for a_iter in a]
-b01=[a01_iter[5] for a01_iter in a01]
-e=len(b)
-e01=len(b01)
-d=linspace(0,0.01/300*e,e)
-d01=linspace(0,0.01/300*e01,e01)
-#print d
-'''
-plot(d,b)
-xlim(0,0.05)
-xlabel('Time(s)')
-ylabel('Signal(arbitary units)')
-title('String signal versus time')
-show()
-'''
-y2=np.fft.fft(b)
-f=np.fft.fftfreq(len(b),0.01/300)
-y2=abs(y2)**2
-plot(f,y2)
-xlabel('Frequency(Hz)')
-ylabel('Power(arbitrary units)')
-title('Power spectrum')
-show()
-
-y21=np.fft.fft(b01)
-f01=np.fft.fftfreq(len(b01),0.01/300)
-y21=abs(y21)**2
-plot(f01,y21,':',color='r')
-xlim(0,3000)
-
-
+print (a[-1])
+#a01=iterator(stop_time=0.05, t_interval=dt, init_cond=init_array,
+#             update_rule=fix_boundary_rule)
+##print cmp(a,a01)
+#'''
+#for iter in a01:
+#   print type(a01)
+#   '''
+#b=[a_iter[5] for a_iter in a]
+#b01=[a01_iter[5] for a01_iter in a01]
+#e=len(b)
+#e01=len(b01)
+#d=linspace(0,0.01/300*e,e)
+#d01=linspace(0,0.01/300*e01,e01)
+##print d
+#'''
+#plot(d,b)
+#xlim(0,0.05)
+#xlabel('Time(s)')
+#ylabel('Signal(arbitary units)')
+#title('String signal versus time')
+#show()
+#'''
+#y2=np.fft.fft(b)
+#f=np.fft.fftfreq(len(b),0.01/300)
+#y2=abs(y2)**2
+#plot(f,y2)
+#xlabel('Frequency(Hz)')
+#ylabel('Power(arbitrary units)')
+#title('Power spectrum')
+#show()
+#
+#y21=np.fft.fft(b01)
+#f01=np.fft.fftfreq(len(b01),0.01/300)
+#y21=abs(y21)**2
+#plot(f01,y21,':',color='r')
+#xlim(0,3000)
+#
+#
