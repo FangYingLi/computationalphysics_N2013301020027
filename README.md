@@ -22,6 +22,8 @@ I'm fascinated by it!<p>
 >*[problem 5.3](https://www.zybuluo.com/FangYing/note/386146)<p>
 ###chapter6
 >*[problem 6.6](https://www.zybuluo.com/FangYing/note/401676)<p>
+###Research paper
+>*[Vibration, Waves, and the Physics of Musical Instruments](https://www.zybuluo.com/FangYing/note/404009)<p>
 ##Little game<p>
 this is a little game,really little^_^ you can run it in your command window
 [guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
