@@ -1,7 +1,6 @@
-##**Welcome! My name is Li Fangying.**<p>
-This is my first time to use linux symtem and I have no experience of programming before.<p>
-But I find programming is really an interesting thing, especially on python. Learning it sometimes troubles me or confuses me, but it's still a joyful process. <p>
-I'm fascinated by it!<p>
+##**Welcome! **<p>
+I'm a poor student.
+This is my homework of computational physics course at Wuhan University(2016)
 
 ##**Assignment List**
 ###chapter 1
@@ -30,3 +29,7 @@ this is a little game,really little^_^ you can run it in your command window
 
 ###Have light in heart everyday--Best wishes!
 ![](http://a1.qpic.cn/psb?/V13WTB3335ifOd/Xoie5xvk8l1tfzPTjU.7dAEcUFjuH7FohZ.BB9HDSCs!/b/dH0BAAAAAAAA&bo=XgIGAgAAAAAFB3w!&rf=viewer_4)
+
+THIS IS MY COMPUTATIONAL PHYSICS HOMEWORK AT FUDAN UNIVERSITY(2019)
+Lots of things happened in several years......
+It seems that I back to the old way again......
