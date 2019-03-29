@@ -32,4 +32,6 @@ Best wishes!
 
 THIS IS MY COMPUTATIONAL PHYSICS HOMEWORK AT FUDAN UNIVERSITY(2019)  
 Lots of things happened in several years......  
+[problem 1](https://note.youdao.com/web/#/file/recent/markdown/WEB71d3a12a3a918afeaa833589040ae65e/)
+
 
