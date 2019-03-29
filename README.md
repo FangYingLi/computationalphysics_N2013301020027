@@ -1,5 +1,5 @@
 ##**Welcome! **<p>
-I'm a poor student.
+
 This is my homework of computational physics course at Wuhan University(2016)
 
 ##**Assignment List**
@@ -27,9 +27,9 @@ This is my homework of computational physics course at Wuhan University(2016)
 this is a little game,really little^_^ you can run it in your command window
 [guess number](https://github.com/FangYingLi/computationalphysics_N2013301020027/blob/master/guess_number.py)
 
-###Have light in heart everyday--Best wishes!
+Best wishes!
 ![](http://a1.qpic.cn/psb?/V13WTB3335ifOd/Xoie5xvk8l1tfzPTjU.7dAEcUFjuH7FohZ.BB9HDSCs!/b/dH0BAAAAAAAA&bo=XgIGAgAAAAAFB3w!&rf=viewer_4)
 
-THIS IS MY COMPUTATIONAL PHYSICS HOMEWORK AT FUDAN UNIVERSITY(2019)
-Lots of things happened in several years......
-It seems that I back to the old way again......
+THIS IS MY COMPUTATIONAL PHYSICS HOMEWORK AT FUDAN UNIVERSITY(2019)  
+Lots of things happened in several years......  
+
